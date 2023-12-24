@@ -1,0 +1,53 @@
+server:
+  port: 3001
+
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    name: "logback.log"
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: KLNMhjvb0
+    url: jdbc:mysql://localhost/test2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+  web:
+    resources:
+      static-locations: file:${web.upload-path},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  servlet:
+    multipart:
+      max-file-size: 5MB
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/api/v1/**'
+      packages-to-scan: sulic.web.alumnidatamanagement.controller
+
+
+sa-token:
+  token-name: satoken
+  timeout: 2592000
+  is-concurrent: true
+  is-share: true
+  token-style: uuid
+  is-log: true
+  active-timeout: -1
+
+
+web:
+  host-ip: 47.120.51.19
+  host-port: 9000
+  upload-path: D:/Project/AlumniDataManagement/web_data
